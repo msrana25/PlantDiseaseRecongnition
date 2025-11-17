@@ -1,145 +1,55 @@
-# PlantDiseaseRecongnition
-The project aimed at developing an automated plant disease classification system that can assist farmers, researchers, and other stakeholders in the agricultural sector. The project leverages digital imaging technology and deep learning algorithms to accurately detect and classify different types of plant diseases using leaf images.
+# Plant Disease Classification Using Deep Learning
 
-We have used deep learning algorithms such as MobileNet, ShuffleNet, and Resnet18 to learn the visual features of healthy and diseased leaves and classify them into different disease categories.
+Academic research project from COMP 6721 - Concordia University (2023)
 
-Specifically, the models achieved accuracy rates ranging from 92.64% to 99.19% on various datasets of diseased and healthy plant leaves. These results demonstrate the potential of deep learning-based solutions for accurately identifying and classifying plant diseases, which could ultimately reduce the need for manual inspection by experts and improve the efficiency and cost-effectiveness of plant disease diagnosis.
+## Overview
+Developed and evaluated three CNN architectures (MobileNet-v2, ShuffleNet, ResNet-18) for 
+automated plant disease detection using image classification on 40,000+ labeled plant leaf images.
 
-## Getting started
-   We have trained 3 CNN models 
-- [MobileNet-v2](https://pytorch.org/hub/pytorch_vision_mobilenet_v2/)
-- [ResNet18](https://pytorch.org/hub/pytorch_vision_resnet/)
-- [ShuffleNet](https://pytorch.org/hub/pytorch_vision_shufflenet_v2/)
+## My Contributions (Manpreet Singh Rana)
+- **Model Development**: Trained 3 MobileNet-v2 models from scratch, achieving 94% accuracy 
+  (Dataset 1) and 93% accuracy (Dataset 2)
+- **Transfer Learning**: Implemented transfer learning techniques on MobileNet-v2 for Dataset 2 
+  to improve convergence and performance
+- **Dimensionality Reduction**: Conducted t-SNE analysis on both datasets to visualize feature 
+  distributions and validate model learning
+- **Documentation**: Authored primary sections of research report and coordinated team deliverables
 
-In each of above directory we have three subdirectory containing jupyter notebook for each Dataset.
-- [Dataset 1](https://www.kaggle.com/datasets/rashikrahmanpritom/plant-disease-recognition-dataset)
-- [Dataset 2](https://www.kaggle.com/datasets/emmarex/plantdisease)
-- [Dataset 3](https://www.kaggle.com/datasets/vipoooool/new-plant-diseases-dataset)
+## Technical Stack
+- **Languages**: Python
+- **Frameworks**: PyTorch, torchvision
+- **Tools**: Google Colab (GPU), Kaggle datasets
+- **Techniques**: CNN training, transfer learning, data augmentation, t-SNE visualization
 
-Instruction to obtain the Datasets:
-    Dataset can be downloaded directly from the Kaggle. In the included notebooks, we just have to define the Username and the password for Kaggle. And the dataset can be downloaded through the implementation it self.
-  
-  Eg: 
-  
-    import os
-    os.environ['KAGGLE_USERNAME'] ='sampleUserName'
-    os.environ['KAGGLE_KEY'] = 'samplePassword'
-    
-   By running the below code in the implementation notebooks, the dataset will be downlaoded to the colab environment.
-   
-      !kaggle datasets download -d rashikrahmanpritom/plant-disease-recognition-dataset
+## Datasets
+- **Dataset 1**: 1,530 images (Healthy, Powdery, Rust) - 4000x2672 pixels
+- **Dataset 2**: 15 classes (tomato, potato, pepper diseases) - 256x256 pixels
+- **Dataset 3**: 40K images, 23 classes (augmented dataset)
 
+## Results
+| Model | Dataset 1 Accuracy | Dataset 2 Accuracy |
+|-------|-------------------|-------------------|
+| MobileNet-v2 | 94% | 93% |
+| ShuffleNet | 92% | 90% |
+| ResNet-18 | 99.95% | 96.4% |
 
-Floder Structure:
+## Key Learnings
+- Addressed overfitting through hyperparameter tuning (reduced epochs from 25 to 12)
+- Optimized training pipeline by migrating from local CPU to GPU-accelerated environment
+- Balanced model complexity with computational efficiency for agricultural deployment scenarios
 
-  HyperParameterTuning
-  
-    Contains the notebooks which is used for the hyper parameter tuning.
-      Dataset1
-        There several notebooks which uses the dataset 1 with shufflenet.
-          shufflenet1 _epoch10_batch62.ipynb
-          shufflenet1 _epoch20_batch32.ipynb
-          shufflenet1_epoch10_batch128.ipynb
-          shufflenet1_epoch_1.ipynb
-          shufflenet1_epoch_20_batch62.ipynb
-      Dataset2
-        There 4 notebooks which uses the dataset 2 with shufflenet for the batch sizes 32, 64, 128 and 256.
-          shufflenet2new_batch_size_128.ipynb
-          shufflenet2new_batch_size_256.ipynb
-          shufflenet2new_batch_size_32.ipynb
-          shufflenet2new_batch_size_64.ipynb
-          
-  MobileNet-v2
-  
-    There are 3 models of MobileNet-v2 with 3 datasets
-      Model1/MobileNetv2_dataset1.ipynb
-      Model2/MobileNetv2_dataset2.ipynb
-      Model3/MobileNetv2_dataset3.ipynb
+## Notebooks
+- `MobileNet_Dataset1.ipynb` - Training on Dataset 1
+- `MobileNet_Dataset2_TransferLearning.ipynb` - Transfer learning implementation
+- `TSNE_Analysis.ipynb` - Dimensionality reduction visualizations
 
-  ResNet18
-  
-    There are 3 models of ResNet18 with 3 datasets and TSNE model along with the saved models.
-      Dataset1
-        dataset-1.ipynb
-        Model.pt
-        Model.pth
-      Dataset2
-        Dataset-2.ipynb
-        Model.pt
-      Dataset3
-        Final_Dataset3.ipynb
-        Model.pt
-      TSNE
-        TSNE_ResNet18_Dataset3.ipynb
-  
-  ShuffleNet
-  
-    There are 3 models of ShuffleNet with 3 datasets and TSNE model along with the saved models.
-      ShuffleNet_Dataset_1
-        model.pt
-        model.pth
-        shufflenet1.ipynb
-      ShuffleNet_Dataset_2
-        model.pt
-        shufflenet2.ipynb
-      ShuffleNet_Dataset_3
-        model.pt
-        shufflenet3.ipynb
+## Acknowledgments
+Collaborative project completed as part of COMP 6721 coursework at Concordia University.
 
-  TSNE
-  
-    There are 3 TSNE models using 3 datasets along with MobileNet-v2 and ShuffleNet
-      Dataset1
-        TSNEMobileNetv2_model1.ipynb
-        TSNEshufflenet1.ipynb
-      Dataset2
-        TSNE_MobileNetv2_model2.ipynb
-        TSNE_shufflenet2.ipynb
-      Dataset3
-        TSNE_shufflenet2.ipynb
-  
-  TransferLearning
-  
-    There are 2 models with Transfer learning using MobileNet-v2 and ShuffleNet
-    Model1
-      MobileNetv2_model2.ipynb
-    Model2_shuffleNet
-      best_model.pt
-      transferlearning-shufflenetv2.ipynb
+Original team repository: https://github.com/prvnsingh/PlantDiseaseRecongnition
 
-Requirements: 
-  The following libraries have been used for the implementation of these 9 models.
-    
-    * os
-    * shutil
-    * random
-    * torch
-    * torchvision.transforms
-    * torchvision.datasets
-    * torch.nn
-    * torch.optim
-    * torchvision.models
-    * ImageFolder
-    * glob
-    * matplotlib.pyplot
-    * tqdm
-    * numpy
-    * sklearn.metrics
-    * seaborn
+## Contact
+Manpreet Singh Rana - [LinkedIn] https://www.linkedin.com/in/manpreet-singh-rana-8990bb14b/ | [Email] rsingh.manpreet@gmail.com
+```
 
-
-## Hyperparameter Tuning
-The directory HyperParameterTuning contains different notebook run on different hyper-parameters.
-
-## TNSE
-The directory TNSE contains notebook showing TNSE analysis of datasets
-
-## Transfer Learning
-The directory transfer learning contains notebooks in which model are run on pretained weights such as [ Weights.IMAGENET1K_V1](https://pytorch.org/vision/stable/models.html#general-information-on-pre-trained-weights)
-
-
-## How to run
-Import the notebook at [google collab](https://colab.research.google.com/) and run in GPU.
-
-## Testing
-Each model directory has saved trained model .pt file. You can import the saved model and do inference on your custom dataset to detect plant disease.
+--
